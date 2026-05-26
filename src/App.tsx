@@ -2,6 +2,7 @@ import HeroSection from "./sections/HeroSection";
 import Navbar from "./layouts/Navbar";
 import ServicesSection from "./sections/ServicesSection";
 import FeaturedProjectSection from "./sections/FeaturedProjectSection";
+import AtmosphereSection from "./sections/AtmosphereSection";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <HeroSection />
       <ServicesSection />
       <FeaturedProjectSection />
+      <AtmosphereSection />
     </main>
   );
 }
