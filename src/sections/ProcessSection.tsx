@@ -1,7 +1,14 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+  useMotionValueEvent,
+} from "framer-motion";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
+import ProcessCard from "../components/ui/ProcessCard";
 import villaImage from "../assets/images/villa-project.jpg";
 
 function ProcessSection() {
@@ -23,11 +30,42 @@ function ProcessSection() {
     ["38vw", "100vw"],
   );
 
+  //---CARD SCALE-------------------------------------------------------------------------------------------------------
+
+  const cardTranslateX = useTransform(scrollYProgress, [0, 0.4], [120, 0]);
+
+  const cardOpacity = useTransform(scrollYProgress, [0, 0.25], [0.3, 1]);
+
+  const cardBlur = useTransform(scrollYProgress, [0, 0.3], [12, 0]);
+
+  //---PANEL SCALE-------------------------------------------------------------------------------------------------------
+
   const panelScale = useTransform(scrollYProgress, [0, 0.22], [1, 1.08]);
 
   const panelX = useTransform(scrollYProgress, [0, 0.22], [0, -120]);
 
   const panelBlur = useTransform(scrollYProgress, [0, 0.22], [0, 8]);
+
+  const processSteps = [
+    {
+      step: "STEP 01",
+      title: "Concept & Spatial Vision",
+      description:
+        "We shape emotionally driven architectural experiences through refined composition and timeless spatial design.",
+    },
+    {
+      step: "STEP 02",
+      title: "Luxury Material Direction",
+      description:
+        "Premium textures, warm lighting, and cinematic material balance crafted for emotional impact.",
+    },
+    {
+      step: "STEP 03",
+      title: "Atmosphere & Emotional Design",
+      description:
+        "Every visual layer is designed to create calm, prestige, and immersive luxury presence.",
+    },
+  ];
 
   return (
     <section
@@ -121,63 +159,30 @@ function ProcessSection() {
         </div>
 
         {/* RIGHT PANEL */}
-        <motion.div
-          style={{
-            scale: panelScale,
-            x: panelX,
-            backdropFilter: `blur(${panelBlur}px)`,
-          }}
+        <div
           className="
             absolute
             right-[12%]
             top-1/2
             z-30
 
-            w-[420px]
-            -translate-y-1/2
+            w-[460px]
+            h-screen
 
-            border
-            border-white/10
-
-            bg-black/40
-            backdrop-blur-md
-
-            p-10
+           -translate-y-1/2
           "
         >
-          <p
-            className="
-              mb-4
-              text-sm
-              uppercase
-              tracking-[0.2em]
-              text-amber-200
-            "
-          >
-            Step 01
-          </p>
-
-          <h3
-            className="
-              mb-6
-              text-4xl
-              leading-tight
-              text-white
-            "
-          >
-            Concept & Spatial Vision
-          </h3>
-
-          <p
-            className="
-              leading-relaxed
-              text-white/60
-            "
-          >
-            We shape emotionally driven architectural experiences through
-            cinematic composition, material balance, and refined minimalism.
-          </p>
-        </motion.div>
+          {processSteps.map((step, index) => (
+            <ProcessCard
+              key={step.step}
+              step={step.step}
+              title={step.title}
+              description={step.description}
+              index={index}
+              scrollYProgress={scrollYProgress}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

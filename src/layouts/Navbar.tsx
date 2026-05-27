@@ -40,7 +40,7 @@ function Navbar() {
               text-[#8f877c]
             "
           >
-            Luxury Digital Studio
+            Architecture Studio
           </p>
         </div>
 
