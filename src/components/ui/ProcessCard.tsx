@@ -27,8 +27,6 @@ function ProcessCard({
 
   const cardY = useTransform(scrollYProgress, [start, end], ["45vh", "-45vh"]);
 
-  const centerPoint = (start + end) / 2;
-
   const visibleStart = start + 0.08;
   const visibleEnd = end - 0.08;
 

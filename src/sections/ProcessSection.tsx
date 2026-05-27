@@ -2,11 +2,9 @@ import {
   motion,
   useScroll,
   useTransform,
-  AnimatePresence,
-  useMotionValueEvent,
 } from "framer-motion";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 import ProcessCard from "../components/ui/ProcessCard";
 import villaImage from "../assets/images/villa-project.jpg";
@@ -29,22 +27,6 @@ function ProcessSection() {
     [0, 0.22],
     ["38vw", "100vw"],
   );
-
-  //---CARD SCALE-------------------------------------------------------------------------------------------------------
-
-  const cardTranslateX = useTransform(scrollYProgress, [0, 0.4], [120, 0]);
-
-  const cardOpacity = useTransform(scrollYProgress, [0, 0.25], [0.3, 1]);
-
-  const cardBlur = useTransform(scrollYProgress, [0, 0.3], [12, 0]);
-
-  //---PANEL SCALE-------------------------------------------------------------------------------------------------------
-
-  const panelScale = useTransform(scrollYProgress, [0, 0.22], [1, 1.08]);
-
-  const panelX = useTransform(scrollYProgress, [0, 0.22], [0, -120]);
-
-  const panelBlur = useTransform(scrollYProgress, [0, 0.22], [0, 8]);
 
   const processSteps = [
     {
