@@ -132,6 +132,7 @@ function ProcessSection() {
                 font-light
                 leading-tight
                 text-[#f5efe7]
+                font-['Cormorant_Garamond']
               "
             >
               Architecture crafted through precision, atmosphere, and timeless
