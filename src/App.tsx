@@ -5,6 +5,7 @@ import FeaturedProjectSection from "./sections/FeaturedProjectSection";
 import ProcessSection from "./sections/ProcessSection";
 import useSmoothScroll from "./hooks/useSmoothScroll";
 import SpatialExperiencesSection from "./sections/SpatialExperiencesSection";
+import DesignProcessSection from "./sections/DesignProcessSection";
 
 function App() {
   useSmoothScroll();
@@ -17,6 +18,7 @@ function App() {
       <FeaturedProjectSection />
       <ProcessSection />
       <SpatialExperiencesSection />
+      <DesignProcessSection />
     </main>
   );
 }

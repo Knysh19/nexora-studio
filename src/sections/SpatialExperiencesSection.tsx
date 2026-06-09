@@ -4,6 +4,12 @@ import { useRef } from "react";
 import image1 from "../assets/images/1.jpg";
 import image2 from "../assets/images/2.jpg";
 import image7 from "../assets/images/7.jpg";
+import image6 from "../assets/images/6.jpg";
+import imageK2 from "../assets/images/000.jpg";
+import imageK3 from "../assets/images/k3.jpg";
+import imageS1 from "../assets/images/s1.jpg";
+import imageS2 from "../assets/images/888.jpg";
+import imageS3 from "../assets/images/s4.jpg";
 
 export default function SpatialExperiencesSection() {
   const sectionRef = useRef(null);
@@ -14,12 +20,12 @@ export default function SpatialExperiencesSection() {
   });
 
   const experiences = [
+    // Exterior
+
     {
       number: "01",
       category: "Private Residence",
       title: "Architectural Presence",
-      description:
-        "Large-scale forms emerging through darkness and atmospheric landscape.",
       image: image1,
     },
 
@@ -27,8 +33,6 @@ export default function SpatialExperiencesSection() {
       number: "02",
       category: "Luxury Exterior",
       title: "Light & Reflection",
-      description:
-        "Water, illumination, and geometry blending into cinematic stillness.",
       image: image2,
     },
 
@@ -36,9 +40,51 @@ export default function SpatialExperiencesSection() {
       number: "03",
       category: "Spatial Architecture",
       title: "Timeless Modernism",
-      description:
-        "A restrained architectural language shaped through proportion and atmosphere.",
       image: image7,
+    },
+
+    // Interior
+
+    {
+      number: "04",
+      category: "Spatial Flow",
+      title: "Designed For Presence",
+      image: image6,
+    },
+
+    {
+      number: "05",
+      category: "Materiality",
+      title: "Refined Material Language",
+      image: imageK2,
+    },
+
+    {
+      number: "06",
+      category: "Gathering Spaces",
+      title: "Spaces For Connection",
+      image: imageK3,
+    },
+
+    {
+      number: "07",
+      category: "Wellness",
+      title: "Restorative Spaces",
+      image: imageS1,
+    },
+
+    {
+      number: "08",
+      category: "Water & Light",
+      title: "Immersive Reflection",
+      image: imageS2,
+    },
+
+    {
+      number: "09",
+      category: "Private Retreat",
+      title: "Designed For Calm",
+      image: imageS3,
     },
   ];
 
@@ -93,7 +139,7 @@ export default function SpatialExperiencesSection() {
       </div>
 
       {/* SCROLL EXPERIENCE */}
-      <div className="relative h-[400vh]">
+      <div className="relative h-[1050vh]">
         <div
           className="
             sticky
@@ -110,11 +156,18 @@ export default function SpatialExperiencesSection() {
 
               const end = (index + 1) / experiences.length;
 
-              const opacity = useTransform(
-                scrollYProgress,
-                [start, start + 0.12, end - 0.12, end],
-                [0, 1, 1, 0],
-              );
+              const opacity =
+                index === 3 || index === 6
+                  ? useTransform(
+                      scrollYProgress,
+                      [start, start + 0.02, end - 0.005, end],
+                      [0, 1, 1, 0],
+                    )
+                  : useTransform(
+                      scrollYProgress,
+                      [start, start + 0.05, end - 0.05, end],
+                      [0, 1, 1, 0],
+                    );
 
               const scale = useTransform(
                 scrollYProgress,
@@ -128,6 +181,15 @@ export default function SpatialExperiencesSection() {
                 ["0%", "6%"],
               );
 
+              const slideX =
+                index === 3 || index === 6
+                  ? useTransform(
+                      scrollYProgress,
+                      [start, start + 0.07],
+                      ["100%", "0%"],
+                    )
+                  : "0%";
+
               return (
                 <motion.img
                   key={experience.number}
@@ -137,6 +199,7 @@ export default function SpatialExperiencesSection() {
                     opacity,
                     scale,
                     y,
+                    x: slideX,
                   }}
                   className="
                     absolute
@@ -194,7 +257,7 @@ export default function SpatialExperiencesSection() {
 
               const opacity = useTransform(
                 scrollYProgress,
-                [start, start + 0.1, end - 0.1, end],
+                [start, start + 0.05, end - 0.05, end],
                 [0, 1, 1, 0],
               );
 
