@@ -1,6 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
+import backgroundPattern from "../assets/images/back.jpg";
+
 export default function DesignProcessSection() {
   const sectionRef = useRef(null);
 
@@ -107,6 +109,32 @@ export default function DesignProcessSection() {
             overflow-hidden
           "
         >
+          <motion.img
+            style={{
+              scale: useTransform(scrollYProgress, [0, 1], [1, 1.08]),
+            }}
+            src={backgroundPattern}
+            alt=""
+            className="
+              absolute
+              inset-0
+
+              h-full
+              w-full
+
+              object-cover
+
+              opacity-[0.18]
+           "
+          />
+          <div
+            className="
+              absolute
+              inset-0
+
+              bg-black/50
+            "
+          />
           {/* TOP TIMELINE */}
           <div
             className="
@@ -145,7 +173,7 @@ export default function DesignProcessSection() {
 
                   -translate-y-1/2
 
-                  bg-[#b88c3a]
+                  bg-[#d6a85a]
                 "
               />
 
@@ -163,14 +191,14 @@ export default function DesignProcessSection() {
 
                   const opacity = useTransform(
                     scrollYProgress,
-                    [start, start + 0.08, end],
-                    [0.35, 1, 0.35],
+                    [start, start + 0.08, end - 0.08, end],
+                    [0, 1, 1, 0],
                   );
 
                   const color = useTransform(
                     scrollYProgress,
                     [start, start + 0.08],
-                    ["rgba(255,255,255,0.35)", "#b88c3a"],
+                    ["rgba(255,255,255,0.35)", "#d6a85a"],
                   );
 
                   return (
@@ -194,14 +222,24 @@ export default function DesignProcessSection() {
                         md:text-sm
                       "
                     >
-                      {step.title}
+                      <div className="flex flex-col items-center gap-3">
+                        <div
+                          className="
+                           h-3
+                           w-3
+                           rounded-full
+                           bg-current
+                          "
+                        />
+
+                        <span>{step.backgroundWord}</span>
+                      </div>
                     </motion.div>
                   );
                 })}
               </div>
             </div>
           </div>
-
           {/* CONTENT */}
           <div
             className="
@@ -214,6 +252,8 @@ export default function DesignProcessSection() {
               const start = index / impactSteps.length;
               const end = (index + 1) / impactSteps.length;
 
+              const isLastStep = index === impactSteps.length - 1;
+
               const opacity = useTransform(
                 scrollYProgress,
                 [start, start + 0.08, end - 0.08, end],
@@ -221,7 +261,6 @@ export default function DesignProcessSection() {
               );
 
               const y = useTransform(scrollYProgress, [start, end], [80, -80]);
-
               return (
                 <motion.div
                   key={step.title}
@@ -252,6 +291,9 @@ export default function DesignProcessSection() {
                         items-center
                         justify-center
 
+                        justify-end
+                        pr-[8vw]
+
                         pointer-events-none
                      "
                     >
@@ -261,7 +303,7 @@ export default function DesignProcessSection() {
                           font-light
                           tracking-[-0.05em]
 
-                         text-white/[0.03]
+                         text-[#b88c3a]/[0.5]
                        "
                       >
                         {step.backgroundWord}
@@ -270,57 +312,66 @@ export default function DesignProcessSection() {
 
                     <div
                       className="
-                       relative
-                       z-10
+                         relative
+                         z-10
 
-                       max-w-5xl
-                      "
+                          grid
+                          items-center
+                          gap-16
+
+                         md:grid-cols-2
+                         md:gap-24
+                       "
                     >
-                      <p
-                        className="
-                         mb-4
+                      {/* LEFT */}
+                      <div>
+                        <p
+                          className="
+                           mb-4
 
-                         text-sm
-                          uppercase
-                          tracking-[0.35em]
+                           text-sm
+                           uppercase
+                           tracking-[0.35em]
 
-                         text-[#b88c3a]
-                       "
-                      >
-                        Impact
-                      </p>
+                            text-[#b88c3a]
+                          "
+                        >
+                          Impact
+                        </p>
 
-                      <h3
-                        className="
-                         font-['Cormorant_Garamond']
+                        <h3
+                          className="
+                           font-['Cormorant_Garamond']
 
-                         text-7xl
-                         font-light
-                          leading-none
+                            text-7xl
+                            font-light
+                            leading-none
 
-                          md:text-[12rem]
-                       "
-                      >
-                        {step.value}
-                      </h3>
+                            md:text-[11rem]
+                          "
+                        >
+                          {step.value}
+                        </h3>
 
-                      <h4
-                        className="
-                         mt-4
-                         mb-8
+                        <h4
+                          className="
+                           mt-4
 
-                         text-2xl
-                         font-light
+                           text-2xl
+                           font-light
 
-                          md:text-5xl
-                       "
-                      >
-                        {step.title}
-                      </h4>
+                            md:text-5xl
+                         "
+                        >
+                          {step.title}
+                        </h4>
+                      </div>
 
-                      <p
-                        className="
-                          max-w-2xl
+                      {/* RIGHT */}
+                      <div>
+                        <p
+                          className="
+                          max-w-xl
 
                           text-lg
                           leading-relaxed
@@ -329,14 +380,74 @@ export default function DesignProcessSection() {
 
                           md:text-xl
                         "
-                      >
-                        {step.description}
-                      </p>
+                        >
+                          {step.description}
+                        </p>
+                      </div>
                     </div>
                   </>
                 </motion.div>
               );
             })}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              className="
+    absolute
+    bottom-20
+    left-1/2
+
+    -translate-x-1/2
+
+    flex
+    flex-col
+    items-center
+
+    text-center
+    z-50
+  "
+            >
+              <p
+                className="
+      mb-6
+
+      text-sm
+      uppercase
+      tracking-[0.3em]
+
+      text-white/50
+    "
+              >
+                Ready to begin?
+              </p>
+
+              <button
+                className="
+      rounded-full
+
+      border
+      border-[#d6a85a]
+
+      px-10
+      py-4
+
+      text-sm
+      uppercase
+      tracking-[0.25em]
+
+      text-[#d6a85a]
+
+      transition-all
+      duration-500
+
+      hover:bg-[#d6a85a]/10
+      hover:shadow-[0_0_40px_rgba(214,168,90,0.25)]
+    "
+              >
+                Start Your Project
+              </button>
+            </motion.div>
           </div>
         </div>
       </div>
