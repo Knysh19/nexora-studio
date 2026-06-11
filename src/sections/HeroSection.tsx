@@ -143,13 +143,47 @@ function HeroSection() {
           className="
             mt-14
             flex
-            justify-center
-            gap-5
+            flex-col
+            items-center
           "
         >
-          <Button text="Enter Studio" variant="primary" />
+          <Button
+            text="Discover Nexora"
+            variant="primary"
+            onClick={() => {
+              console.log("CLICK");
+              document.getElementById("services")?.scrollIntoView();
+            }}
+          />
+          <div
+            className="
+             mt-10
+              flex
+              flex-col
+              items-center
+              gap-2
 
-          <Button text="View Projects" variant="secondary" />
+              text-[10px]
+              uppercase
+              tracking-[0.4em]
+              text-[#7a7368]
+            "
+          >
+            <span>Scroll To Explore</span>
+
+            <motion.div
+              animate={{
+                y: [0, 10, 0],
+              }}
+              transition={{
+                duration: 2.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              <ChevronDown size={18} />
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

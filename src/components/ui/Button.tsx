@@ -3,9 +3,10 @@ import { motion } from "framer-motion";
 type ButtonProps = {
   text: string;
   variant?: "primary" | "secondary";
+  onClick?: () => void;
 };
 
-function Button({ text, variant = "primary" }: ButtonProps) {
+function Button({ text, variant = "primary", onClick }: ButtonProps) {
   const baseStyles = `
     rounded-full
     px-8
@@ -46,6 +47,7 @@ function Button({ text, variant = "primary" }: ButtonProps) {
 
   return (
     <motion.button
+      onClick={onClick}
       whileHover={{
         y: -3,
         // scale: 1.02,

@@ -1,4 +1,5 @@
 import Reveal from "../components/ui/Reveal";
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -23,6 +24,7 @@ const services = [
 function ServicesSection() {
   return (
     <section
+      id="services"
       className="
         relative
         px-6
