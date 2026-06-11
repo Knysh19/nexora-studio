@@ -1,5 +1,4 @@
 import Reveal from "../components/ui/Reveal";
-import { motion } from "framer-motion";
 
 const services = [
   {
