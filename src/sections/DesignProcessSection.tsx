@@ -252,8 +252,6 @@ export default function DesignProcessSection() {
               const start = index / impactSteps.length;
               const end = (index + 1) / impactSteps.length;
 
-              const isLastStep = index === impactSteps.length - 1;
-
               const opacity = useTransform(
                 scrollYProgress,
                 [start, start + 0.08, end - 0.08, end],
