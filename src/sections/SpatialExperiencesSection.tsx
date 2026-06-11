@@ -324,7 +324,6 @@ export default function SpatialExperiencesSection() {
                         md:text-xl
                       "
                     >
-                      {experience.description}
                     </p>
                   </div>
                 </motion.div>
