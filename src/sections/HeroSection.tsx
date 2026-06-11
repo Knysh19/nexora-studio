@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Reveal from "../components/ui/Reveal";
 
 import Button from "../components/ui/Button";
+import { ChevronDown } from "lucide-react";
 
 function HeroSection() {
   return (

@@ -68,23 +68,6 @@ function Navbar() {
               hover:text-amber-100
             "
           >
-            Home
-          </a>
-
-          <a
-            href="#"
-            className="
-              text-[12px]
-              uppercase
-              tracking-[0.15em]
-              text-[#b7aea2]
-
-              transition-all
-              duration-500
-
-              hover:text-amber-100
-            "
-          >
             Services
           </a>
 
@@ -102,7 +85,7 @@ function Navbar() {
               hover:text-amber-100
             "
           >
-            Projects
+            Process
           </a>
 
           <a
