@@ -1,34 +1,67 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { registerTransition } from "../../lib/transition";
 import { lenis } from "../../lib/lenis";
 
+const TRANSITION_DURATION_MS = 300;
+const REVEAL_DELAY_MS = 120;
+const NAVBAR_OFFSET = 80;
+
 function PageTransition() {
-  const [closing, setClosing] = useState(false);
+  const [isCovered, setIsCovered] = useState(false);
+  const closeTimeoutRef = useRef<number | null>(null);
+  const openTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
     registerTransition((id: string) => {
-      console.log("TRANSITION");
-      setClosing(true);
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+      }
 
-      setTimeout(() => {
+      if (openTimeoutRef.current) {
+        clearTimeout(openTimeoutRef.current);
+      }
+
+      setIsCovered(true);
+
+      closeTimeoutRef.current = window.setTimeout(() => {
         const section = document.getElementById(id);
 
-        if (!section) return;
+        if (!section) {
+          setIsCovered(false);
+          return;
+        }
 
         lenis.stop();
-
-        window.scrollTo(0, section.offsetTop - 80);
-
+        lenis.scrollTo(section, {
+          offset: -NAVBAR_OFFSET,
+          immediate: true,
+          force: true,
+        });
         lenis.resize();
+        lenis.raf(performance.now());
         lenis.start();
 
-        setTimeout(() => {
-          setClosing(false);
-        }, 250);
-      }, 300);
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            openTimeoutRef.current = window.setTimeout(() => {
+              setIsCovered(false);
+            }, REVEAL_DELAY_MS);
+          });
+        });
+      }, TRANSITION_DURATION_MS);
     });
+
+    return () => {
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+      }
+
+      if (openTimeoutRef.current) {
+        clearTimeout(openTimeoutRef.current);
+      }
+    };
   }, []);
 
   return (
@@ -42,10 +75,10 @@ function PageTransition() {
     >
       <motion.div
         animate={{
-          y: closing ? 0 : "-100%",
+          y: isCovered ? 0 : "-100%",
         }}
         transition={{
-          duration: 0.3,
+          duration: TRANSITION_DURATION_MS / 1000,
         }}
         className="
           absolute
@@ -59,10 +92,10 @@ function PageTransition() {
 
       <motion.div
         animate={{
-          y: closing ? 0 : "100%",
+          y: isCovered ? 0 : "100%",
         }}
         transition={{
-          duration: 0.3,
+          duration: TRANSITION_DURATION_MS / 1000,
         }}
         className="
           absolute
