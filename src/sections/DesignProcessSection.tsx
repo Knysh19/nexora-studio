@@ -392,56 +392,59 @@ export default function DesignProcessSection() {
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.8 }}
               className="
-    absolute
-    bottom-20
-    left-1/2
+               absolute
+                bottom-20
+                left-1/2
 
-    -translate-x-1/2
+                -translate-x-1/2
 
-    flex
-    flex-col
-    items-center
+                flex
+                flex-col
+                items-center
 
-    text-center
-    z-50
-  "
+                text-center
+                z-50
+              "
             >
               <p
                 className="
-      mb-6
+                 mb-6
 
-      text-sm
-      uppercase
-      tracking-[0.3em]
+                  text-sm
+                  uppercase
+                  tracking-[0.3em]
 
-      text-white/50
-    "
+                  text-white/50
+                "
               >
                 Ready to begin?
               </p>
 
               <button
+                onClick={() => {
+                  document.getElementById("contact")?.scrollIntoView();
+                }}
                 className="
-      rounded-full
+                  rounded-full
 
-      border
-      border-[#d6a85a]
+                  border
+                  border-[#d6a85a]
 
-      px-10
-      py-4
+                  px-10
+                  py-4
 
-      text-sm
-      uppercase
-      tracking-[0.25em]
+                  text-sm
+                  uppercase
+                  tracking-[0.25em]
 
-      text-[#d6a85a]
+                  text-[#d6a85a]
 
-      transition-all
-      duration-500
+                  transition-all
+                  duration-500
 
-      hover:bg-[#d6a85a]/10
-      hover:shadow-[0_0_40px_rgba(214,168,90,0.25)]
-    "
+                 hover:bg-[#d6a85a]/10
+                  hover:shadow-[0_0_40px_rgba(214,168,90,0.25)]
+               "
               >
                 Start Your Project
               </button>

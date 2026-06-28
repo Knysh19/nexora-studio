@@ -6,6 +6,8 @@ import ProcessSection from "./sections/ProcessSection";
 import useSmoothScroll from "./hooks/useSmoothScroll";
 import SpatialExperiencesSection from "./sections/SpatialExperiencesSection";
 import DesignProcessSection from "./sections/DesignProcessSection";
+import ContactSection from "./sections/ContactSection";
+import PageTransition from "./components/ui/PageTransition";
 
 function App() {
   useSmoothScroll();
@@ -19,6 +21,9 @@ function App() {
       <ProcessSection />
       <SpatialExperiencesSection />
       <DesignProcessSection />
+      <ContactSection />
+
+      <PageTransition />
     </main>
   );
 }

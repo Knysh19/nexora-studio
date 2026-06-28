@@ -1,8 +1,4 @@
-import {
-  motion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 import { useRef } from "react";
 
@@ -51,6 +47,7 @@ function ProcessSection() {
 
   return (
     <section
+      id="process"
       ref={sectionRef}
       className="
         relative

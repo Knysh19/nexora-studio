@@ -1,4 +1,21 @@
+import { navigateTo } from "../lib/navigation";
+
 function Navbar() {
+  const navItems = [
+    {
+      label: "Services",
+      id: "services",
+    },
+    {
+      label: "Process",
+      id: "process",
+    },
+    {
+      label: "Contact",
+      id: "contact",
+    },
+  ];
+
   return (
     <header
       className="
@@ -47,16 +64,19 @@ function Navbar() {
         {/* CENTER NAV */}
         <nav
           className="
-            hidden
-            items-center
-            gap-12
+          hidden
+          items-center
+          gap-12
+          pointer
 
-            md:flex
-          "
+          md:flex
+        "
         >
-          <a
-            href="#"
-            className="
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => navigateTo(item.id)}
+              className="
               text-[12px]
               uppercase
               tracking-[0.15em]
@@ -67,47 +87,16 @@ function Navbar() {
 
               hover:text-amber-100
             "
-          >
-            Services
-          </a>
-
-          <a
-            href="#"
-            className="
-              text-[12px]
-              uppercase
-              tracking-[0.15em]
-              text-[#b7aea2]
-
-              transition-all
-              duration-500
-
-              hover:text-amber-100
-            "
-          >
-            Process
-          </a>
-
-          <a
-            href="#"
-            className="
-              text-[12px]
-              uppercase
-              tracking-[0.15em]
-              text-[#b7aea2]
-
-              transition-all
-              duration-500
-
-              hover:text-amber-100
-            "
-          >
-            Contact
-          </a>
+            >
+              {item.label}
+            </button>
+          ))}
         </nav>
 
         {/* RIGHT */}
         <button
+          key={"contact"}
+          onClick={() => navigateTo("contact")}
           className="
             rounded-full
             border
@@ -129,7 +118,7 @@ function Navbar() {
             hover:text-amber-100
           "
         >
-          Enter
+          Start a Project
         </button>
       </div>
     </header>

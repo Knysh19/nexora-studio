@@ -152,7 +152,6 @@ function HeroSection() {
             text="Discover Nexora"
             variant="primary"
             onClick={() => {
-              console.log("CLICK");
               document.getElementById("services")?.scrollIntoView();
             }}
           />
