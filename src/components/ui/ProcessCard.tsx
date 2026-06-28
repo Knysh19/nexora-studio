@@ -1,4 +1,4 @@
-import { motion, useTransform } from "framer-motion";
+import { motion, useTransform, type MotionValue } from "framer-motion";
 
 type ProcessCardProps = {
   step: string;
@@ -7,7 +7,7 @@ type ProcessCardProps = {
 
   index: number;
 
-  scrollYProgress: any;
+  scrollYProgress: MotionValue<number>;
 };
 
 function ProcessCard({
@@ -64,7 +64,7 @@ function ProcessCard({
 
         p-10
 
-        backdrop-blur-2xl
+        backdrop-blur-md
       "
     >
       <p

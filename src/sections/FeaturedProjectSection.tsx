@@ -30,6 +30,8 @@ function FeaturedProjectSection() {
             <img
               src={villaImage}
               alt="Luxury Villa"
+              loading="lazy"
+              decoding="async"
               className="
                 h-[800px]
                 w-full
