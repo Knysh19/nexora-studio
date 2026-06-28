@@ -147,7 +147,7 @@ function ImpactPanel({ index, scrollYProgress, step }: ImpactStepProps) {
             relative
             z-10
             grid
-            items-center
+            items-start
             gap-16
             md:grid-cols-2
             md:gap-24
@@ -190,13 +190,21 @@ function ImpactPanel({ index, scrollYProgress, step }: ImpactStepProps) {
             </h4>
           </div>
 
-          <div>
+          <div
+            className="
+              md:flex
+              md:min-h-[32rem]
+              md:items-end
+              md:justify-end
+            "
+          >
             <p
               className="
                 max-w-xl
                 text-lg
                 leading-relaxed
                 text-neutral-300
+                md:pb-8
                 md:text-xl
               "
             >
