@@ -8,23 +8,32 @@ import SpatialExperiencesSection from "./sections/SpatialExperiencesSection";
 import DesignProcessSection from "./sections/DesignProcessSection";
 import ContactSection from "./sections/ContactSection";
 import PageTransition from "./components/ui/PageTransition";
+import MobilePlaceholder from "./layouts/MobilePlaceholder";
 
 function App() {
   useSmoothScroll();
 
   return (
-    <main className="bg-[#050505] text-white">
-      <Navbar />
-      <HeroSection />
-      <ServicesSection />
-      <FeaturedProjectSection />
-      <ProcessSection />
-      <SpatialExperiencesSection />
-      <DesignProcessSection />
-      <ContactSection />
+    <>
+      <div className="block lg:hidden">
+        <MobilePlaceholder />
+      </div>
 
-      <PageTransition />
-    </main>
+      <div className="hidden lg:block">
+        <main className="bg-[#050505] text-white">
+          <Navbar />
+          <HeroSection />
+          <ServicesSection />
+          <FeaturedProjectSection />
+          <ProcessSection />
+          <SpatialExperiencesSection />
+          <DesignProcessSection />
+          <ContactSection />
+
+          <PageTransition />
+        </main>
+      </div>
+    </>
   );
 }
 
