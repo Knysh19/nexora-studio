@@ -80,25 +80,24 @@ function MobileProcessSection() {
           </h2>
         </Reveal>
 
-        <div className="mt-14 space-y-0">
+        <div className="relative mt-14 space-y-8">
+          <div
+            className="
+              absolute
+              bottom-0
+              left-6
+              top-0
+              w-px
+              bg-gradient-to-b
+              from-[#d6a85a]
+              via-[#d6a85a]/35
+              to-transparent
+            "
+          />
+
           {MOBILE_PROCESS_STEPS.map((step, index) => (
             <Reveal key={step.step} delay={index * 0.08}>
-              <div className="relative grid grid-cols-[3rem_1fr] gap-5 pb-10 last:pb-0">
-                {index < MOBILE_PROCESS_STEPS.length - 1 && (
-                  <div
-                    className="
-                      absolute
-                      bottom-0
-                      left-6
-                      top-12
-                      w-px
-                      bg-gradient-to-b
-                      from-[#d6a85a]
-                      to-white/10
-                    "
-                  />
-                )}
-
+              <div className="relative grid grid-cols-[3rem_1fr] gap-5">
                 <div
                   className="
                     relative

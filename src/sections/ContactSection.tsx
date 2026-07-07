@@ -225,6 +225,8 @@ function ContactSection() {
                   border
                   border-[#8a6b2f]
 
+                  mx-auto
+                  block
                   w-full
 
                   px-10
