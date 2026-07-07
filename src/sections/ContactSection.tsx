@@ -12,8 +12,12 @@ function ContactSection() {
         relative
         overflow-hidden
         bg-[#050505]
-        px-6
-        py-40
+        px-5
+        py-20
+
+        sm:px-6
+        sm:py-24
+        lg:py-40
       "
     >
       <div className="mx-auto max-w-6xl">
@@ -34,9 +38,12 @@ function ContactSection() {
             <h2
               className="
                 font-['Cormorant_Garamond']
-                text-6xl
+                text-4xl
                 leading-[0.95]
                 text-[#f5efe7]
+
+                sm:text-5xl
+                lg:text-6xl
               "
             >
               Let's create something timeless together.
@@ -44,11 +51,14 @@ function ContactSection() {
 
             <p
               className="
-                mt-8
+                mt-6
                 max-w-2xl
-                text-lg
+                text-base
                 leading-relaxed
                 text-[#8f877c]
+
+                lg:mt-8
+                lg:text-lg
               "
             >
               Whether you're designing a private residence, a luxury interior,
@@ -59,17 +69,19 @@ function ContactSection() {
 
         <div
           className="
-            mt-24
+            mt-14
             grid
-            gap-20
+            gap-14
 
+            lg:mt-24
             lg:grid-cols-2
+            lg:gap-20
           "
         >
           {/* LEFT */}
 
           <Reveal delay={0.15}>
-            <div className="space-y-12">
+            <div className="space-y-9 lg:space-y-12">
               <div>
                 <p
                   className="
@@ -83,7 +95,9 @@ function ContactSection() {
                   Email
                 </p>
 
-                <p className="text-2xl text-[#f5efe7]">hello@nexora.studio</p>
+                <p className="text-xl text-[#f5efe7] sm:text-2xl">
+                  hello@nexora.studio
+                </p>
               </div>
 
               <div>
@@ -99,7 +113,9 @@ function ContactSection() {
                   Phone
                 </p>
 
-                <p className="text-2xl text-[#f5efe7]">+44 20 1234 5678</p>
+                <p className="text-xl text-[#f5efe7] sm:text-2xl">
+                  +44 20 1234 5678
+                </p>
               </div>
 
               <div>
@@ -115,7 +131,7 @@ function ContactSection() {
                   Location
                 </p>
 
-                <p className="text-2xl text-[#f5efe7]">
+                <p className="text-xl text-[#f5efe7] sm:text-2xl">
                   London, United Kingdom
                 </p>
               </div>
@@ -209,6 +225,8 @@ function ContactSection() {
                   border
                   border-[#8a6b2f]
 
+                  w-full
+
                   px-10
                   py-4
 
@@ -223,6 +241,8 @@ function ContactSection() {
                   hover:border-amber-100
                   hover:bg-amber-100
                   hover:text-black
+
+                  sm:w-auto
                 "
               >
                 Start Conversation

@@ -5,16 +5,91 @@ import villaImage from "../assets/images/first.jpg";
 function FeaturedProjectSection() {
   return (
     <section
+      id="projects"
       className="
         relative
-        px-6
-        py-32
         bg-[#050505]
+        px-5
+        py-20
+
+        sm:px-6
+        sm:py-24
+        lg:px-6
+        lg:py-32
       "
     >
+      <div className="lg:hidden">
+        <Reveal>
+          <div className="mx-auto max-w-3xl">
+            <div
+              className="
+                overflow-hidden
+                rounded-[28px]
+                border
+                border-white/[0.06]
+              "
+            >
+              <img
+                src={villaImage}
+                alt="Luxury Villa"
+                loading="lazy"
+                decoding="async"
+                className="
+                  aspect-[4/5]
+                  w-full
+                  object-cover
+                  sm:aspect-[16/10]
+                "
+              />
+            </div>
+
+            <div className="pt-9">
+              <p
+                className="
+                  mb-4
+                  text-xs
+                  uppercase
+                  tracking-[0.32em]
+                  text-amber-200/70
+                "
+              >
+                Featured Project
+              </p>
+
+              <h2
+                className="
+                  font-['Cormorant_Garamond']
+                  text-5xl
+                  leading-[0.95]
+                  text-[#f5efe7]
+                  sm:text-6xl
+                "
+              >
+                Designed
+                <span className="text-amber-200"> For </span>
+                Atmosphere
+              </h2>
+
+              <p
+                className="
+                  mt-5
+                  text-base
+                  leading-relaxed
+                  text-[#b8b0a5]
+                "
+              >
+                A cinematic residential concept focused on light, silence,
+                material contrast, and timeless luxury.
+              </p>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+
       <Reveal>
         <div
           className="
+            hidden
             group
             relative
 
@@ -23,6 +98,8 @@ function FeaturedProjectSection() {
 
             overflow-hidden
             rounded-[40px]
+
+            lg:block
           "
         >
           {/* IMAGE */}

@@ -8,6 +8,10 @@ type ButtonProps = {
 
 function Button({ text, variant = "primary", onClick }: ButtonProps) {
   const baseStyles = `
+    inline-flex
+    w-full
+    items-center
+    justify-center
     rounded-full
     px-8
     py-4
@@ -17,6 +21,8 @@ function Button({ text, variant = "primary", onClick }: ButtonProps) {
     ease-out
 
     hover:-translate-y-[2px]
+
+    sm:w-auto
   `;
 
   const variants = {

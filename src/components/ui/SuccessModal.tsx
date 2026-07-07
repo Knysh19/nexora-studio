@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { Check } from "lucide-react";
 
 type Props = {
   open: boolean;
@@ -42,22 +43,26 @@ function SuccessModal({ open, onClose }: Props) {
               left-1/2
               top-1/2
               z-[9999]
-              w-[500px]
+              w-[calc(100%-2rem)]
+              max-w-[500px]
               -translate-x-1/2
               -translate-y-1/2
-              rounded-[32px]
+              rounded-[28px]
               border
               border-white/10
               bg-[#0d0d0d]
-              p-12
+              p-8
               text-center
+
+              sm:rounded-[32px]
+              sm:p-12
             "
           >
-            <div className="mb-6 text-6xl text-amber-300">
-              ✓
+            <div className="mb-6 flex justify-center text-amber-300">
+              <Check size={48} strokeWidth={1.3} />
             </div>
 
-            <h2 className="mb-4 text-4xl font-['Cormorant_Garamond'] text-[#f5efe7]">
+            <h2 className="mb-4 font-['Cormorant_Garamond'] text-4xl text-[#f5efe7]">
               Request Sent
             </h2>
 

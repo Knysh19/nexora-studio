@@ -3,38 +3,54 @@ import Reveal from "../components/ui/Reveal";
 
 import Button from "../components/ui/Button";
 import { ChevronDown } from "lucide-react";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 function HeroSection() {
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+
   return (
     <section
       className="
         relative
         flex
-        min-h-screen
+        min-h-[100svh]
         flex-col
         items-center
         justify-center
         overflow-hidden
         bg-[#050505]
-        px-6
+        px-5
+        py-28
         text-center
+
+        sm:px-6
+        lg:min-h-screen
+        lg:py-0
       "
     >
       {/* AMBIENT GRADIENT LIGHT */}
       <motion.div
-        animate={{
-          y: [0, -20, 0],
-          scale: [1, 1.05, 1],
-        }}
+        animate={
+          isDesktop
+            ? {
+                y: [0, -20, 0],
+                scale: [1, 1.05, 1],
+              }
+            : {
+                opacity: 0.22,
+              }
+        }
         transition={{
-          duration: 8,
-          repeat: Infinity,
+          duration: isDesktop ? 8 : 0.8,
+          repeat: isDesktop ? Infinity : 0,
           ease: "easeInOut",
         }}
         className="
           absolute
           inset-0
-          opacity-40
+          opacity-25
+
+          lg:opacity-40
         "
         style={{
           background: `
@@ -54,8 +70,10 @@ function HeroSection() {
           pointer-events-none
           absolute
           inset-0
-          opacity-50
+          opacity-35
           mix-blend-soft-light
+
+          lg:opacity-50
         "
         style={{
           backgroundImage:
@@ -64,7 +82,7 @@ function HeroSection() {
       />
 
       {/* CONTENT */}
-      <div className="relative z-10">
+      <div className="relative z-10 w-full max-w-[38rem] lg:max-w-none">
         {/* SMALL LABEL */}
         <Reveal>
           <p
@@ -72,8 +90,10 @@ function HeroSection() {
               mb-6
               text-xs
               uppercase
-              tracking-[0.4em]
+              tracking-[0.32em]
               text-amber-200/70
+
+              lg:tracking-[0.4em]
             "
           >
             Luxury Architecture Studio
@@ -95,19 +115,25 @@ function HeroSection() {
             ease: [0.22, 1, 0.36, 1],
           }}
           className="
-            max-w-5xl
+            mx-auto
+            max-w-[22rem]
 
             font-['Cormorant_Garamond']
 
-            text-7xl
+            text-[52px]
             font-medium
 
-            leading-[0.9]
-            tracking-[-0.03em]
+            leading-[0.92]
+            tracking-normal
 
             text-[#f5efe7]
 
-            md:text-[120px]
+            sm:max-w-[32rem]
+            sm:text-[56px]
+            lg:max-w-5xl
+            lg:text-[120px]
+            lg:leading-[0.9]
+            lg:tracking-[-0.03em]
           "
         >
           Crafted
@@ -120,11 +146,14 @@ function HeroSection() {
           <p
             className="
               mx-auto
-              mt-10
+              mt-7
               max-w-2xl
-              text-lg
+              text-base
               leading-relaxed
               text-[#9f9689]
+
+              lg:mt-10
+              lg:text-lg
             "
           >
             We craft timeless architectural spaces through cinematic minimalism,
@@ -142,10 +171,16 @@ function HeroSection() {
             ease: [0.22, 1, 0.36, 1],
           }}
           className="
-            mt-14
+            mx-auto
+            mt-10
             flex
+            w-full
+            max-w-sm
             flex-col
             items-center
+
+            lg:mt-14
+            lg:max-w-none
           "
         >
           <Button
@@ -157,7 +192,7 @@ function HeroSection() {
           />
           <div
             className="
-             mt-10
+             mt-8
               flex
               flex-col
               items-center
@@ -167,6 +202,8 @@ function HeroSection() {
               uppercase
               tracking-[0.4em]
               text-[#7a7368]
+
+              lg:mt-10
             "
           >
             <span>Scroll To Explore</span>

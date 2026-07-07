@@ -7,6 +7,8 @@ import {
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
+import Reveal from "../components/ui/Reveal";
+import useMediaQuery from "../hooks/useMediaQuery";
 import image1 from "../assets/images/1.jpg";
 import image2 from "../assets/images/2.jpg";
 import image7 from "../assets/images/7.jpg";
@@ -21,6 +23,7 @@ type Experience = {
   number: string;
   category: string;
   title: string;
+  description: string;
   image: string;
 };
 
@@ -29,54 +32,72 @@ const EXPERIENCES: Experience[] = [
     number: "01",
     category: "Private Residence",
     title: "Architectural Presence",
+    description:
+      "Monolithic volume, controlled contrast, and warm exterior light shaped into a quiet statement.",
     image: image1,
   },
   {
     number: "02",
     category: "Luxury Exterior",
     title: "Light & Reflection",
+    description:
+      "Reflective surfaces and evening atmosphere create a restrained cinematic arrival.",
     image: image2,
   },
   {
     number: "03",
     category: "Spatial Architecture",
     title: "Timeless Modernism",
+    description:
+      "Clean geometry and generous negative space give the architecture a calm, lasting presence.",
     image: image7,
   },
   {
     number: "04",
     category: "Spatial Flow",
     title: "Designed For Presence",
+    description:
+      "Open transitions guide movement without visual noise, keeping the experience composed.",
     image: image6,
   },
   {
     number: "05",
     category: "Materiality",
     title: "Refined Material Language",
+    description:
+      "Stone, shadow, and muted warmth combine into a tactile luxury language.",
     image: imageK2,
   },
   {
     number: "06",
     category: "Gathering Spaces",
     title: "Spaces For Connection",
+    description:
+      "Interior scale and lighting are balanced for intimacy, comfort, and social rhythm.",
     image: imageK3,
   },
   {
     number: "07",
     category: "Wellness",
     title: "Restorative Spaces",
+    description:
+      "Soft transitions and natural texture create a slower, more restorative spatial mood.",
     image: imageS1,
   },
   {
     number: "08",
     category: "Water & Light",
     title: "Immersive Reflection",
+    description:
+      "Water, glass, and low light extend the architecture into a quiet sensory field.",
     image: imageS2,
   },
   {
     number: "09",
     category: "Private Retreat",
     title: "Designed For Calm",
+    description:
+      "A secluded composition where proportion and silence become the main luxury.",
     image: imageS3,
   },
 ];
@@ -224,7 +245,103 @@ function ExperienceTextLayer({
   );
 }
 
-export default function SpatialExperiencesSection() {
+function MobileSpatialExperiencesSection() {
+  return (
+    <section className="bg-[#0b0b0b] px-5 py-20 text-white sm:px-6 sm:py-24">
+      <div className="mx-auto max-w-3xl">
+        <Reveal>
+          <p
+            className="
+              mb-5
+              text-xs
+              uppercase
+              tracking-[0.35em]
+              text-amber-200/70
+            "
+          >
+            Exterior Experiences
+          </p>
+
+          <h2
+            className="
+              font-['Cormorant_Garamond']
+              text-4xl
+              font-light
+              leading-[0.95]
+              text-[#f5efe7]
+              sm:text-5xl
+            "
+          >
+            Architecture designed as cinematic presence.
+          </h2>
+        </Reveal>
+
+        <div className="mt-14 space-y-14">
+          {EXPERIENCES.map((experience, index) => (
+            <Reveal key={experience.number} delay={index % 3 * 0.06}>
+              <article>
+                <div
+                  className="
+                    overflow-hidden
+                    rounded-[28px]
+                    border
+                    border-white/[0.06]
+                    bg-white/[0.02]
+                  "
+                >
+                  <img
+                    src={experience.image}
+                    alt={experience.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="
+                      aspect-[4/5]
+                      w-full
+                      object-cover
+                      sm:aspect-[16/10]
+                    "
+                  />
+                </div>
+
+                <div className="pt-6">
+                  <p
+                    className="
+                      mb-3
+                      text-xs
+                      uppercase
+                      tracking-[0.28em]
+                      text-[#b88c3a]
+                    "
+                  >
+                    {experience.number} / {experience.category}
+                  </p>
+
+                  <h3
+                    className="
+                      font-['Cormorant_Garamond']
+                      text-4xl
+                      font-light
+                      leading-none
+                      text-[#f5efe7]
+                    "
+                  >
+                    {experience.title}
+                  </h3>
+
+                  <p className="mt-4 leading-relaxed text-white/60">
+                    {experience.description}
+                  </p>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DesktopSpatialExperiencesSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -370,5 +487,15 @@ export default function SpatialExperiencesSection() {
         </div>
       </div>
     </section>
+  );
+}
+
+export default function SpatialExperiencesSection() {
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+
+  return isDesktop ? (
+    <DesktopSpatialExperiencesSection />
+  ) : (
+    <MobileSpatialExperiencesSection />
   );
 }

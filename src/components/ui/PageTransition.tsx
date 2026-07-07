@@ -8,6 +8,31 @@ const TRANSITION_DURATION_MS = 300;
 const REVEAL_DELAY_MS = 120;
 const NAVBAR_OFFSET = 80;
 
+function scrollToSection(section: HTMLElement) {
+  const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+
+  if (!isDesktop) {
+    const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+
+    window.scrollTo({
+      top: sectionTop - NAVBAR_OFFSET,
+      behavior: "smooth",
+    });
+
+    return;
+  }
+
+  lenis.stop();
+  lenis.scrollTo(section, {
+    offset: -NAVBAR_OFFSET,
+    immediate: true,
+    force: true,
+  });
+  lenis.resize();
+  lenis.raf(performance.now());
+  lenis.start();
+}
+
 function PageTransition() {
   const [isCovered, setIsCovered] = useState(false);
   const closeTimeoutRef = useRef<number | null>(null);
@@ -33,15 +58,7 @@ function PageTransition() {
           return;
         }
 
-        lenis.stop();
-        lenis.scrollTo(section, {
-          offset: -NAVBAR_OFFSET,
-          immediate: true,
-          force: true,
-        });
-        lenis.resize();
-        lenis.raf(performance.now());
-        lenis.start();
+        scrollToSection(section);
 
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {

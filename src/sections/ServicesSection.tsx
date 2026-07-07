@@ -26,8 +26,12 @@ function ServicesSection() {
       id="services"
       className="
         relative
-        px-6
-        py-32
+        px-5
+        py-20
+
+        sm:px-6
+        sm:py-24
+        lg:py-32
       "
     >
       <div
@@ -71,9 +75,12 @@ function ServicesSection() {
             <h2
               className="
                 font-['Cormorant_Garamond']
-                text-6xl
+                text-4xl
                 leading-[0.95]
                 text-[#f5efe7]
+
+                sm:text-5xl
+                lg:text-6xl
               "
             >
               Crafted for brands seeking timeless impact.
@@ -84,11 +91,15 @@ function ServicesSection() {
         {/* CARDS */}
         <div
           className="
-            mt-20
+            mt-12
             grid
-            gap-8
+            gap-5
 
-            md:grid-cols-3
+            md:grid-cols-2
+            md:gap-6
+            lg:mt-20
+            lg:grid-cols-3
+            lg:gap-8
           "
         >
           {services.map((service, index) => (
@@ -102,21 +113,24 @@ function ServicesSection() {
 
                   overflow-hidden
 
-                  rounded-[32px]
+                  rounded-[24px]
 
                   border
                   border-white/[0.06]
 
                   bg-white/[0.02]
 
-                  p-10
+                  p-7
 
                   transition-all
                   duration-700
 
-                  hover:-translate-y-3
                   hover:border-amber-100/20
-                  hover:shadow-[0_20px_80px_rgba(0,0,0,0.45)]
+
+                  lg:rounded-[32px]
+                  lg:p-10
+                  lg:hover:-translate-y-3
+                  lg:hover:shadow-[0_20px_80px_rgba(0,0,0,0.45)]
                 "
               >
                 {/* CARD GLOW */}

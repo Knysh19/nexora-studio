@@ -2,9 +2,11 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 import ProcessCard from "../components/ui/ProcessCard";
+import Reveal from "../components/ui/Reveal";
+import useMediaQuery from "../hooks/useMediaQuery";
 import villaImage from "../assets/images/villa-project.jpg";
 
-const PROCESS_STEPS = [
+const DESKTOP_PROCESS_STEPS = [
   {
     step: "STEP 01",
     title: "Concept & Spatial Vision",
@@ -25,7 +27,145 @@ const PROCESS_STEPS = [
   },
 ] as const;
 
-function ProcessSection() {
+const MOBILE_PROCESS_STEPS = [
+  ...DESKTOP_PROCESS_STEPS,
+  {
+    step: "STEP 04",
+    title: "Delivery & Refinement",
+    description:
+      "A polished final experience shaped through precise details, calm hierarchy, and lasting presence.",
+  },
+] as const;
+
+function MobileProcessSection() {
+  return (
+    <section
+      id="process"
+      className="
+        bg-black
+        px-5
+        py-20
+        text-white
+
+        sm:px-6
+        sm:py-24
+      "
+    >
+      <div className="mx-auto max-w-3xl">
+        <Reveal>
+          <p
+            className="
+              mb-5
+              text-xs
+              uppercase
+              tracking-[0.35em]
+              text-amber-200/70
+            "
+          >
+            Our Process
+          </p>
+
+          <h2
+            className="
+              font-['Cormorant_Garamond']
+              text-4xl
+              font-light
+              leading-[0.98]
+              text-[#f5efe7]
+              sm:text-5xl
+            "
+          >
+            Architecture crafted through precision, atmosphere, and timeless
+            spatial design.
+          </h2>
+        </Reveal>
+
+        <div className="mt-14 space-y-0">
+          {MOBILE_PROCESS_STEPS.map((step, index) => (
+            <Reveal key={step.step} delay={index * 0.08}>
+              <div className="relative grid grid-cols-[3rem_1fr] gap-5 pb-10 last:pb-0">
+                {index < MOBILE_PROCESS_STEPS.length - 1 && (
+                  <div
+                    className="
+                      absolute
+                      bottom-0
+                      left-6
+                      top-12
+                      w-px
+                      bg-gradient-to-b
+                      from-[#d6a85a]
+                      to-white/10
+                    "
+                  />
+                )}
+
+                <div
+                  className="
+                    relative
+                    z-10
+                    flex
+                    h-12
+                    w-12
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    border-[#d6a85a]/50
+                    bg-black
+                    text-xs
+                    tracking-[0.2em]
+                    text-[#d6a85a]
+                  "
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+
+                <div
+                  className="
+                    rounded-[24px]
+                    border
+                    border-white/10
+                    bg-white/[0.035]
+                    p-6
+                  "
+                >
+                  <p
+                    className="
+                      mb-4
+                      text-xs
+                      uppercase
+                      tracking-[0.28em]
+                      text-[#d6a066]
+                    "
+                  >
+                    {step.step}
+                  </p>
+
+                  <h3
+                    className="
+                      font-['Cormorant_Garamond']
+                      text-3xl
+                      leading-tight
+                      text-[#f5efe7]
+                    "
+                  >
+                    {step.title}
+                  </h3>
+
+                  <p className="mt-4 leading-relaxed text-white/65">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DesktopProcessSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   const { scrollYProgress } = useScroll({
@@ -139,7 +279,7 @@ function ProcessSection() {
             -translate-y-1/2
           "
         >
-          {PROCESS_STEPS.map((step, index) => (
+          {DESKTOP_PROCESS_STEPS.map((step, index) => (
             <ProcessCard
               key={step.step}
               step={step.step}
@@ -153,6 +293,12 @@ function ProcessSection() {
       </div>
     </section>
   );
+}
+
+function ProcessSection() {
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+
+  return isDesktop ? <DesktopProcessSection /> : <MobileProcessSection />;
 }
 
 export default ProcessSection;

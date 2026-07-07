@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 type RevealProps = {
   children: React.ReactNode;
@@ -6,11 +7,13 @@ type RevealProps = {
 };
 
 function Reveal({ children, delay = 0 }: RevealProps) {
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+
   return (
     <motion.div
       initial={{
         opacity: 0,
-        y: 80,
+        y: isDesktop ? 80 : 28,
       }}
       whileInView={{
         opacity: 1,
@@ -20,7 +23,7 @@ function Reveal({ children, delay = 0 }: RevealProps) {
         once: true,
       }}
       transition={{
-        duration: 1.4,
+        duration: isDesktop ? 1.4 : 0.65,
         delay,
         ease: [0.22, 1, 0.36, 1],
       }}

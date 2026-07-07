@@ -1,6 +1,8 @@
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { useRef } from "react";
 
+import Reveal from "../components/ui/Reveal";
+import useMediaQuery from "../hooks/useMediaQuery";
 import backgroundPattern from "../assets/images/back.jpg";
 
 type ImpactStep = {
@@ -217,7 +219,178 @@ function ImpactPanel({ index, scrollYProgress, step }: ImpactStepProps) {
   );
 }
 
-export default function DesignProcessSection() {
+function MobileDesignProcessSection() {
+  return (
+    <section
+      className="
+        relative
+        overflow-hidden
+        bg-gradient-to-b
+        from-[#0b0b0b]
+        via-[#0f0f0f]
+        to-[#0b0b0b]
+        px-5
+        py-20
+        text-white
+
+        sm:px-6
+        sm:py-24
+      "
+    >
+      <img
+        src={backgroundPattern}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className="
+          absolute
+          inset-0
+          h-full
+          w-full
+          object-cover
+          opacity-[0.08]
+        "
+      />
+
+      <div className="relative z-10 mx-auto max-w-3xl">
+        <Reveal>
+          <p
+            className="
+              mb-5
+              text-xs
+              uppercase
+              tracking-[0.35em]
+              text-amber-200/70
+            "
+          >
+            Our Impact
+          </p>
+
+          <h2
+            className="
+              font-['Cormorant_Garamond']
+              text-4xl
+              font-light
+              leading-[0.95]
+              text-[#f5efe7]
+              sm:text-5xl
+            "
+          >
+            Measured by spaces that endure.
+          </h2>
+        </Reveal>
+
+        <div className="relative mt-14">
+          <div
+            className="
+              absolute
+              bottom-0
+              left-4
+              top-0
+              w-px
+              bg-gradient-to-b
+              from-[#d6a85a]
+              via-[#d6a85a]/35
+              to-transparent
+            "
+          />
+
+          <div className="space-y-8">
+            {IMPACT_STEPS.map((step, index) => (
+              <Reveal key={step.title} delay={index * 0.08}>
+                <article className="relative pl-12">
+                  <div
+                    className="
+                      absolute
+                      left-0
+                      top-2
+                      h-8
+                      w-8
+                      rounded-full
+                      border
+                      border-[#d6a85a]/60
+                      bg-[#0b0b0b]
+                    "
+                  />
+
+                  <div
+                    className="
+                      rounded-[24px]
+                      border
+                      border-white/10
+                      bg-black/25
+                      p-6
+                    "
+                  >
+                    <p
+                      className="
+                        mb-4
+                        text-xs
+                        uppercase
+                        tracking-[0.28em]
+                        text-[#b88c3a]
+                      "
+                    >
+                      {step.backgroundWord}
+                    </p>
+
+                    <h3
+                      className="
+                        font-['Cormorant_Garamond']
+                        text-6xl
+                        font-light
+                        leading-none
+                        text-[#f5efe7]
+                      "
+                    >
+                      {step.value}
+                    </h3>
+
+                    <h4 className="mt-4 text-2xl font-light text-white">
+                      {step.title}
+                    </h4>
+
+                    <p className="mt-4 leading-relaxed text-white/60">
+                      {step.description}
+                    </p>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        <Reveal delay={0.18}>
+          <button
+            onClick={() => {
+              document.getElementById("contact")?.scrollIntoView();
+            }}
+            className="
+              mt-14
+              w-full
+              rounded-full
+              border
+              border-[#d6a85a]
+              px-8
+              py-4
+              text-xs
+              uppercase
+              tracking-[0.22em]
+              text-[#d6a85a]
+              transition-all
+              duration-300
+              hover:bg-[#d6a85a]/10
+            "
+          >
+            Start Your Project
+          </button>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function DesktopDesignProcessSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   const { scrollYProgress } = useScroll({
@@ -433,5 +606,15 @@ export default function DesignProcessSection() {
         </div>
       </div>
     </section>
+  );
+}
+
+export default function DesignProcessSection() {
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+
+  return isDesktop ? (
+    <DesktopDesignProcessSection />
+  ) : (
+    <MobileDesignProcessSection />
   );
 }
