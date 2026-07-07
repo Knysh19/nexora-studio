@@ -63,8 +63,6 @@ function ProcessCard({
         bg-white/[0.08]
 
         p-10
-
-        backdrop-blur-md
       "
     >
       <p

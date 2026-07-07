@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 import { registerTransition } from "../../lib/transition";
-import { lenis } from "../../lib/lenis";
+import { getLenis } from "../../lib/lenis";
 
 const TRANSITION_DURATION_MS = 300;
 const REVEAL_DELAY_MS = 120;
@@ -12,6 +12,19 @@ function scrollToSection(section: HTMLElement) {
   const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
 
   if (!isDesktop) {
+    const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+
+    window.scrollTo({
+      top: sectionTop - NAVBAR_OFFSET,
+      behavior: "smooth",
+    });
+
+    return;
+  }
+
+  const lenis = getLenis();
+
+  if (!lenis) {
     const sectionTop = section.getBoundingClientRect().top + window.scrollY;
 
     window.scrollTo({

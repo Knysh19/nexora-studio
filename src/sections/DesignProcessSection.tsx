@@ -398,8 +398,8 @@ function DesktopDesignProcessSection() {
     offset: ["start start", "end end"],
   });
 
-  const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-  const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
+  const progressScaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.035]);
 
   return (
     <section
@@ -506,12 +506,14 @@ function DesktopDesignProcessSection() {
 
               <motion.div
                 style={{
-                  width: progressWidth,
+                  scaleX: progressScaleX,
+                  transformOrigin: "left center",
                 }}
                 className="
                   absolute
                   top-1/2
                   h-px
+                  w-full
                   -translate-y-1/2
                   bg-[#d6a85a]
                 "

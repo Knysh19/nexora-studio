@@ -1,13 +1,26 @@
 import Lenis from "lenis";
 
-export const lenis = new Lenis({
-  duration: 0.9,
+type LenisInstance = InstanceType<typeof Lenis>;
 
-  smoothWheel: true,
+let lenis: LenisInstance | null = null;
 
-  wheelMultiplier: 0.9,
+export function createLenis() {
+  lenis ??= new Lenis({
+    duration: 0.85,
+    smoothWheel: true,
+    wheelMultiplier: 0.9,
+    touchMultiplier: 1.5,
+    easing: (t: number) => 1 - Math.pow(1 - t, 3),
+  });
 
-  touchMultiplier: 1.5,
+  return lenis;
+}
 
-  easing: (t: number) => 1 - Math.pow(1 - t, 3),
-});
+export function getLenis() {
+  return lenis;
+}
+
+export function destroyLenis() {
+  lenis?.destroy();
+  lenis = null;
+}

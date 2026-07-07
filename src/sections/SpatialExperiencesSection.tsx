@@ -5,7 +5,7 @@ import {
   useTransform,
   type MotionValue,
 } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import Reveal from "../components/ui/Reveal";
 import useMediaQuery from "../hooks/useMediaQuery";
@@ -113,6 +113,7 @@ function preloadImage(src: string) {
 
   image.decoding = "async";
   image.src = src;
+  void image.decode?.().catch(() => undefined);
 
   preloadedImages.add(src);
 }
@@ -146,20 +147,9 @@ function ExperienceImageLayer({
     [start, start + 0.05, end - 0.05, end],
     [0, 1, 1, 0],
   );
-  const accentOpacity = useTransform(
-    scrollYProgress,
-    [start, start + 0.02, end - 0.005, end],
-    [0, 1, 1, 0],
-  );
 
-  const scale = useTransform(scrollYProgress, [start, end], [1, 1.12]);
-  const y = useTransform(scrollYProgress, [start, end], ["0%", "6%"]);
-  const slideInX = useTransform(
-    scrollYProgress,
-    [start, start + 0.07],
-    ["100%", "0%"],
-  );
-  const isAccentSlide = index === 3 || index === 6;
+  const scale = useTransform(scrollYProgress, [start, end], [1, 1.045]);
+  const y = useTransform(scrollYProgress, [start, end], ["0%", "2.5%"]);
 
   return (
     <motion.img
@@ -168,10 +158,9 @@ function ExperienceImageLayer({
       decoding="async"
       fetchPriority={isPriority ? "high" : "auto"}
       style={{
-        opacity: isAccentSlide ? accentOpacity : defaultOpacity,
+        opacity: defaultOpacity,
         scale,
         y,
-        x: isAccentSlide ? slideInX : "0%",
       }}
       className="
         absolute
@@ -179,7 +168,6 @@ function ExperienceImageLayer({
         h-full
         w-full
         object-cover
-        will-change-transform
       "
     />
   );
@@ -359,7 +347,7 @@ function DesktopSpatialExperiencesSection() {
   });
 
   useEffect(() => {
-    for (let index = activeIndex - 2; index <= activeIndex + 2; index += 1) {
+    for (let index = activeIndex; index <= activeIndex + 2; index += 1) {
       const experience = EXPERIENCES[index];
 
       if (!experience) {
@@ -370,14 +358,22 @@ function DesktopSpatialExperiencesSection() {
     }
   }, [activeIndex]);
 
-  const visibleExperiences = EXPERIENCES.filter((_, index) => {
-    return Math.abs(index - activeIndex) <= 1;
-  }).map((experience, index) => {
-    return {
-      experience,
-      index: Math.max(0, activeIndex - 1) + index,
-    };
-  });
+  const visibleExperiences = useMemo(() => {
+    const secondaryIndex =
+      activeIndex === EXPERIENCES.length - 1 ? activeIndex - 1 : activeIndex + 1;
+
+    return [activeIndex, secondaryIndex]
+      .filter((index, arrayIndex, indexes) => {
+        return index >= 0 && indexes.indexOf(index) === arrayIndex;
+      })
+      .sort((a, b) => a - b)
+      .map((index) => {
+        return {
+          experience: EXPERIENCES[index],
+          index,
+        };
+      });
+  }, [activeIndex]);
 
   return (
     <section
