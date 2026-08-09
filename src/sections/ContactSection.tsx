@@ -153,6 +153,7 @@ function ContactSection() {
             >
               <input
                 type="text"
+                required
                 placeholder="Name"
                 className="
                   w-full
@@ -175,6 +176,7 @@ function ContactSection() {
 
               <input
                 type="email"
+                required
                 placeholder="Email"
                 className="
                   w-full
@@ -197,6 +199,7 @@ function ContactSection() {
 
               <textarea
                 rows={5}
+                required
                 placeholder="Tell us about your vision..."
                 className="
                   w-full
