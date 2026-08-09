@@ -2,10 +2,6 @@
 
 Luxury architecture landing page crafted with React, TypeScript and Framer Motion.
 
-![Preview](...)
-
----
-
 ## Live Demo
 
 🔗 https://nexora-studio-eight.vercel.app
