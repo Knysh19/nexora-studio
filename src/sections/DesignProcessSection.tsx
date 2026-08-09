@@ -3,7 +3,7 @@ import { useRef } from "react";
 
 import Reveal from "../components/ui/Reveal";
 import useMediaQuery from "../hooks/useMediaQuery";
-import backgroundPattern from "../assets/images/back.jpg";
+import backgroundPattern from "../assets/images/backResized.webp";
 
 type ImpactStep = {
   value: string;

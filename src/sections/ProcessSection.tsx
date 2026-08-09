@@ -4,7 +4,7 @@ import { useRef } from "react";
 import ProcessCard from "../components/ui/ProcessCard";
 import Reveal from "../components/ui/Reveal";
 import useMediaQuery from "../hooks/useMediaQuery";
-import villaImage from "../assets/images/villa-project.jpg";
+import villaImage from "../assets/images/villa-projectResized.webp";
 
 const DESKTOP_PROCESS_STEPS = [
   {

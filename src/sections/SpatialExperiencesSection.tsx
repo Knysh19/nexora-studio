@@ -9,15 +9,17 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 import Reveal from "../components/ui/Reveal";
 import useMediaQuery from "../hooks/useMediaQuery";
-import image1 from "../assets/images/1.jpg";
-import image2 from "../assets/images/2.jpg";
-import image7 from "../assets/images/7.jpg";
-import image6 from "../assets/images/6.jpg";
-import imageK2 from "../assets/images/000.jpg";
-import imageK3 from "../assets/images/k3.jpg";
-import imageS1 from "../assets/images/s1.jpg";
-import imageS2 from "../assets/images/888.jpg";
-import imageS3 from "../assets/images/s4.jpg";
+import image1 from "../assets/images/1Resized.webp";
+import image2 from "../assets/images/2Resized.webp";
+import image7 from "../assets/images/7Resized.webp";
+import image6 from "../assets/images/6Resized.webp";
+import imageK2 from "../assets/images/000Resized.webp";
+import imageK3 from "../assets/images/k3Resized.webp";
+import imageS1 from "../assets/images/s1Resized.webp";
+import imageS2 from "../assets/images/888Resized.webp";
+import imageS3 from "../assets/images/s4Resized.webp";
+
+// Back 000  1    2    6   7    888    k3   s1   s4
 
 type Experience = {
   number: string;

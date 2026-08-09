@@ -1,6 +1,6 @@
 import Reveal from "../components/ui/Reveal";
 
-import villaImage from "../assets/images/first.jpg";
+import villaImage from "../assets/images/firstResized.webp";
 
 function FeaturedProjectSection() {
   return (
